@@ -1,0 +1,10 @@
+/flask/
+/logs/
+/__pycache__/
+.DS_Store
+module/flask/
+module/logs/
+module/__pycache__/
+module/data_for_KG/
+module/const.pyc
+imgs/

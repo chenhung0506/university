@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+		<meta charset="utf-8">
+		<title>SSO</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+  <input class="target" type="text" value="">
+  <input type="button" onclick="login()" value="login"></input>
+</body>
+<script>
+$(function () {
+  $( ".target" ).change(function() {
+    console.log( "update cookie " + $(".target").val() );
+    initCookie();
+    setCookie('pszWSSOID', $(".target").val());
+    console.log(document.cookie);
+  });
+  login = function () {
+    console.log(document.cookie);
+    // window.location = "/customized/SSOLogin";
+    $.ajax({
+        type: 'GET',
+        url: '/customized/SSOLogin',
+        success: function(msg) {
+          console.log(msg);
+        }
+    });
+
+  }
+  initCookie = function (){
+    console.log('init cookie');
+    setCookie('pszWSSOToken', 'pszWSSOToken');
+    setCookie('pszWSSOID', 'SSO1');
+    setCookie('pszUserIP', 'pszUserIP');
+    setCookie('RequestedURL', 'RequestedURL');
+  };
+  function setCookie(name, value){
+    const Days = 1;
+    const exp = new Date();
+    const timetoday = parseInt(exp.getTime(), 10);
+    const timelastday = parseInt((Days * 24 * 60 * 60 * 1000), 10);
+    const timestamp = timetoday + timelastday;
+    exp.setTime(timestamp);
+    document.cookie = `${name}=${escape(value)};expires=${exp.toGMTString()}`;
+  }
+  function getCookie(name){
+    const reg = new RegExp(`(^| )${name}=([^;]*)(;|$)`);
+    const arr = document.cookie.match(reg);
+    if (arr) {
+      return arr[2];
+    }
+    return null;
+  }
+  closeChatBot = function(){
+    alert('count down success');
+  };
+  showContactUsDialog = function(){
+    alert('showContactUsDialog success');
+  };
+  initCookie();
+});
+</script>
+</html>

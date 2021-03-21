@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="expires" content="Fri, 12 Jan 2001 0:0:0 GMT"/>
+</head>
+
+<body>
+Test page.
+
+<script>
+var xhr = new XMLHttpRequest();
+
+xhr.open("POST", "/customized/ChatCallRecords", true);
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+// xhr.send('session_id=0113a8db-c086-43dd-bc05-70b485359e1b&pid=0');
+xhr.send('session_id=0&pid=11');
+
+xhr.onload = function() {
+
+//  console.log("onload().")
+//  var location = this.getResponseHeader("Location");
+
+//  console.log(this.responseText);
+//  document.write(this.responseText);
+  window.location = this.responseText;
+
+}
+</script>
+
+</body>
+</html>

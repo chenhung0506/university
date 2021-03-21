@@ -1,0 +1,21 @@
+requests
+PyMySQL==0.9.3
+python-dotenv==0.11.0
+Flask==1.1.1
+opencc-python-reimplemented==0.1.5
+Flask-Cors==3.0.8
+Flask-RESTful==0.3.8
+APScheduler==3.5.0
+Flask-Cors==3.0.8
+pysftp==0.2.9
+# cffi==1.14.2 
+# setuptools==40.8.0
+# paramiko==2.7.2 
+# pycparser==2.20 
+# cffi==1.8
+# bcrypt==3.2.0 
+# cryptography==3.1 
+# pynacl==1.4.0 
+cryptography==3.3.1
+pycrypto==2.6.1
+PyJWT==2.0.1
