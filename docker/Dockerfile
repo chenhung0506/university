@@ -10,5 +10,5 @@ RUN apk del .py_deps &&\
     apk add curl &&\
     echo "Asia/Taipei" > /etc/timezone
 COPY ./module /usr/src/app
-HEALTHCHECK --interval=60s --timeout=5s --retries=5 CMD curl -fs "http://localhost:8333/healthCheck" || exit 1 
+HEALTHCHECK --interval=60s --timeout=5s --retries=5 CMD curl -fs "http://localhost:8336/healthCheck" || exit 1 
 CMD ["python", "server.py"]

@@ -1,6 +1,6 @@
-curl -XPOST localhost:8333/vote/getUniversity
+curl -XPOST localhost:8336/vote/getUniversity
 
-curl -XPOST localhost:8333/vote/editUniversity --header 'Content-Type: application/json' --data-raw '{
+curl -XPOST localhost:8336/vote/editUniversity --header 'Content-Type: application/json' --data-raw '{
   "u_name": "test2",
   "kind": "colleage",
   "descri": "2021-02-19 19:27:35",
@@ -10,7 +10,7 @@ curl -XPOST localhost:8333/vote/editUniversity --header 'Content-Type: applicati
   "medal": 1
 }'
 
-curl -XPOST localhost:8333/vote/delUniversity --header 'Content-Type: application/json' --data-raw '{
+curl -XPOST localhost:8336/vote/delUniversity --header 'Content-Type: application/json' --data-raw '{
   "u_name": "outbound2",
   "kind": "colleage",
   "descri": "2021-02-19 19:27:35",
@@ -20,4 +20,4 @@ curl -XPOST localhost:8333/vote/delUniversity --header 'Content-Type: applicatio
   "medal": 1
 }'
 
-curl -XPOST localhost:8333/vote/jwt
+curl -XPOST localhost:8336/vote/jwt
