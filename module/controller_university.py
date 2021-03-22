@@ -47,7 +47,7 @@ class UploadPdf(Resource):
         if file and allowed_file(file.filename):
             filename_ok = utils.clean_filename(file.filename)
             log.info('file name: ' + filename_ok)
-            file.save(os.path.join('./univer/upload', filename_ok))
+            file.save(os.path.join('./university/upload', filename_ok))
             return {"data":filename_ok, "status": 200, "message":"success"}, 200
         else:
             log.info('valid sub filename')

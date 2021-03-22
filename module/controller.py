@@ -26,42 +26,48 @@ from datetime import datetime
 log = logpy.logging.getLogger(__name__)
 
 def setup_route(api):
-    api.add_resource(Default, '/university/')
     api.add_resource(HealthCheck, '/healthCheck')
-    api.add_resource(GetChatRecords, '/getChatRecords')
-    api.add_resource(StaticResource, '/university/<path:filename>')
-
-class StaticResource(Resource):
-    def get(self, filename):
-        # root_dir = os.path.dirname(os.getcwd())
-        # return send_from_directory( os.path.join(root_dir,'static'), filename)
-        log.info(filename)
-        return send_from_directory('./resource/university',  filename )
-
-class Default(Resource):
-    log.debug('check health')
-    def get(self):
-        return send_from_directory('./resource/university', 'index.html')
+    api.add_resource(Default, '/')
+    api.add_resource(Admin, '/admin/')
+    api.add_resource(University, '/university/')
+    api.add_resource(AdminStaticResource, '/admin/<path:filename>')
+    api.add_resource(UniversityStaticResource, '/university/<path:filename>')
+    api.add_resource(UploadStaticResource, '/university/upload/<path:filename>')
 
 class HealthCheck(Resource):
     log.debug('check health')
     def get(self):
         return {"status": "200","message": "success"}, 200
 
-class GetChatRecords(Resource):
+
+class AdminStaticResource(Resource):
+    def get(self, filename):
+        # root_dir = os.path.dirname(os.getcwd())
+        # return send_from_directory( os.path.join(root_dir,'static'), filename)
+        log.info(filename)
+        return send_from_directory('./resource/admin',  filename )
+
+class Admin(Resource):
+    log.debug('check health')
     def get(self):
-        callApi=service.CallApi()
-        log.info('GetChatRecords api start')
-        response = callApi.getChatRecords("1e8fc05f-6c04-4333-a5b9-436fd5663f7b")
-        log.info(response)
-        return {
-            'message': str(response)
-        }, 200
-    def post(self):
-        callApi=service.CallApi()
-        log.info('GetChatRecords api start')
-        response = callApi.getChatRecords("1e8fc05f-6c04-4333-a5b9-436fd5663f7b")
-        log.info(response)
-        return {
-            'message': str(response)
-        }, 200
+        return send_from_directory('./resource/admin', 'index.html')
+
+class UniversityStaticResource(Resource):
+    def get(self, filename):
+        # root_dir = os.path.dirname(os.getcwd())
+        # return send_from_directory( os.path.join(root_dir,'static'), filename)
+        log.info(filename)
+        return send_from_directory('./resource/university',  filename )
+
+class UploadStaticResource(Resource):
+    def get(self, filename):
+        log.info(filename)
+        return send_from_directory('./university/upload',  filename )
+
+class University(Resource):
+    def get(self):
+        return send_from_directory('./resource/university', 'index.html')
+
+class Default(Resource):
+    def get(self):
+        return redirect(url_for('university'))

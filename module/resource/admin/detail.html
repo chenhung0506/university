@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>教育部營隊網站登入系統</title>
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    </head>
+    <body id="page-top">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                <!-- title -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">網站管理後台</div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="add.html">
+                        <i class="fas fa-check-circle"></i>
+                        <span>新增學校</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="list.html">
+                        <i class="fas fa-cog"></i>
+                        <span>學校管理</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- End of Sidebar -->
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Top bar -->
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                        </button>
+                        <!-- admin icon -->
+                        <ul class="navbar-nav ml-auto">
+                            <div class="topbar-divider d-none d-sm-block"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">管理員，您好！</span>
+                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        登出
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 mb-4">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3 bg-warning">
+                                        <h6 class="m-0 font-weight-bold text-primary">學校管理 - 編輯</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="hidden" class="form-control" id="u_id">
+                                        <div class="form-group">
+                                            <label for="">修改學校名稱</label>
+                                            <input type="text" class="form-control" id="u_name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">修改學校分類</label>
+                                            <select class="form-control" id="kind">
+                                                <option value="一般大學">一般大學</option>
+                                                <option value="科技大學">科技大學</option>
+                                                <option value="技職工專">技職工專</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">修改學校敘述</label>
+                                            <textarea class="form-control" id="descri" rows="3"></textarea>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label for="">修改PDF 1</label>
+                                            <input type="file" class="form-control-file" id="pdf1_path">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">修改PDF 2</label>
+                                            <input type="file" class="form-control-file" id="pdf2_path">
+                                        </div>
+                                        <hr>
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" id="reward">
+                                            <label class="form-check-label" for="">本學校得獎</label>
+                                        </div>
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" id="medal">
+                                            <label class="form-check-label" for="">本學校有獎章</label>
+                                        </div>
+                                        <hr>
+                                        <button type="submit" class="btn btn-warning btn-block" id="edit-univer">確認修改</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Begin Page Content -->
+                </div>
+                <!-- End of Main Content -->
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; 2021</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+            </div>
+            <!-- End of Content Wrapper -->
+        </div>
+        <!-- End of Page Wrapper -->
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">確定登出本系統？</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                        <a class="btn btn-primary" href="login.html">登出</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="js/sb-admin-2.min.js"></script>
+        <script>
+        $(document).ready(function() {
+
+            console.log(urlSearchParams('uid'));
+
+            function urlSearchParams(name) {
+                const uri = window.location.href;
+                var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(uri);
+                if (results == null){
+                    return null;
+                }
+                else {
+                    return decodeURI(results[1]) || 0;
+                }
+            };
+            $.ajax({
+                    url: "/university/getUniversity",
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    dataSrc: "data",
+                    data: JSON.stringify({"u_id": urlSearchParams('uid')}),
+                    success: function(returnData, textStatus, xhr){
+                        console.log(returnData)
+                        $("#u_id").val(returnData.data[0]['u_id']);
+                        $("#u_name").val(returnData.data[0]['u_name']);
+                        $("#kind option[value='"+returnData.data[0]['kind']+"']").prop('selected',true);
+                        $("#descri").val(returnData.data[0]['descri']);
+                        // $("#pdf1_path").val(returnData.data[0]['pdf1_path']);
+                        // $("#pdf2_path").val(returnData.data[0]['pdf2_path']);
+                        $("#reward").prop('checked', parseInt( returnData.data[0]['reward'] ));
+                        $("#medal").prop('checked', parseInt( returnData.data[0]['medal'] ));
+                    }
+            })
+
+            $('#edit-univer').on('click',function(){
+                var pdf1_path = '';
+                var pdf2_path = '';
+                uploadPdf('pdf1_path').then(data=>{
+                    console.log(data);
+                    pdf1_path=data.data;
+                    uploadPdf('pdf2_path').then(data=>{ 
+                        console.log(data);
+                        pdf2_path=data.data;
+                        editUniver(pdf1_path, pdf2_path);
+
+                    }).catch(err=>{
+                         console.log(err);
+                         alert('PDF2 上傳出錯，新增學校失敗:' + err) 
+                    });
+                }).catch(err=>{
+                    console.log(err); 
+                    alert('PDF1 上傳出錯，新增學校失敗:' + err) 
+                });
+
+
+            });
+
+            function editUniver(pdf1, pdf2){
+                var dataJSON = {
+                    "u_id": $("#u_id").val(),
+                    "u_name": $("#u_name").val(),
+                    "kind": $("#kind").val(),
+                    "descri": $("#descri").val(),
+                    "pdf1_path": pdf1,
+                    "pdf2_path": pdf2,
+                    "reward": $("#reward").prop('checked'),
+                    "medal": $("#medal").prop('checked')
+                };
+                $.ajax({
+                    url: "/university/editUniversity",
+                    data: JSON.stringify(dataJSON),
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    success: function(returnData, textStatus, xhr){
+                        console.log(returnData);
+                        if (returnData.status == 200) {
+                            $("#u_id").val(returnData.data[0]['u_id']);
+                            $("#u_name").val(returnData.data[0]['u_name']);
+                            $("#kind option[value='"+returnData.data[0]['kind']+"']").prop('selected',true);
+                            $("#descri").val(returnData.data[0]['descri']);
+                            // $("#pdf1_path").val(returnData.data[0]['pdf1_path']);
+                            // $("#pdf2_path").val(returnData.data[0]['pdf2_path']);
+                            $("#reward").prop('checked', parseInt( returnData.data[0]['reward'] ));
+                            $("#medal").prop('checked', parseInt( returnData.data[0]['medal'] ));
+                            var r = confirm("更新成功!");
+                            if (r == true) {
+                                window.location.href="list.html"
+                            }
+                        } else {
+                            alert(returnData.message);
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        alert('新增失敗!');
+                        console.log(xhr.status);
+                        console.log(thrownError);
+                    }
+                });
+                
+            }
+
+            function uploadPdf(pdf){ 
+                return new Promise((resolve, reject) => { 
+                    var file_data = $('#'+ pdf).prop('files')[0];   //取得上傳檔案屬性
+                    if (file_data == undefined) {
+                        resolve({"data":""});
+                        return {"data":""};
+                    }
+                    var form_data = new FormData();  //建構new FormData()
+                    form_data.append('file', file_data);  //吧物件加到file後面  
+                    $.ajax({
+                        url: '/university/uploadPdf',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,     //data只能指定單一物件
+                        type: 'post',
+                        success: function(data){
+                            resolve(data); 
+                        },
+                        error: function(xhr, ajaxOptions, thrownError){
+                            console.log(xhr.status);
+                            console.log(thrownError);
+                            if (xhr.status == 413){
+                                reject('更增失敗: pdf上傳失敗，檔案大小超過128MB');
+                            }else{
+                                reject('更增失敗: pdf上傳失敗');
+                            }
+                        }
+                    });
+                }) 
+            }
+        })
+        </script>
+    </body>
+</html>

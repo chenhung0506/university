@@ -6,7 +6,6 @@ import re
 import os
 import const
 import controller
-import controller_sso
 import controller_recaptcha
 import controller_university
 #import controller_ccui
@@ -29,12 +28,11 @@ app = Flask(__name__, template_folder=template_dir)
 app.config['MAX_CONTENT_LENGTH'] = 128 * 1024 * 1024  # 16MB
 api = Api(app)
 controller.setup_route(api)
-controller_sso.setup_route(api)
 controller_recaptcha.setup_route(api)
 controller_university.setup_route(api)
 # setting for send_from_directory
-app.static_folder = os.path.abspath("resource/university/")
-app.static_url_path = os.path.abspath("resource/university/")
+# app.static_folder = os.path.abspath("resource/university/")
+# app.static_url_path = os.path.abspath("resource/university/")
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 if __name__=="__main__":
