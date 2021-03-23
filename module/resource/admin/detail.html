@@ -69,7 +69,7 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
                         <div class="row justify-content-center">
-                            <div class="col-lg-6 mb-4">
+                            <div class="col-lg-8 mb-4">
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3 bg-warning">
                                         <h6 class="m-0 font-weight-bold text-primary">學校管理 - 編輯</h6>
@@ -83,9 +83,9 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">修改學校分類</label>
                                             <select class="form-control" id="kind">
-                                                <option value="一般大學">一般大學</option>
+                                                <option value="普通大學">普通大學</option>
                                                 <option value="科技大學">科技大學</option>
-                                                <option value="技職工專">技職工專</option>
+                                                <option value="專科學校">專科學校</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -94,14 +94,66 @@
                                         </div>
                                         <hr>
                                         <div class="form-group">
-                                            <label for="">修改PDF 1</label>
+                                            <label for="">學生會簡述</label>
+                                            ｜舊版本：<a href="">檔名</a>
                                             <input type="file" class="form-control-file" id="pdf1_path">
                                         </div>
+                                        <hr>
                                         <div class="form-group">
-                                            <label for="">修改PDF 2</label>
+                                            <label for="">學生會特色簡報</label>
+                                            ｜舊版本：<a href="">檔名</a>
                                             <input type="file" class="form-control-file" id="pdf2_path">
                                         </div>
                                         <hr>
+                                        <div class="form-group">
+                                            <label for="">修改</label>
+                                            <input type="text" class="form-control" id="u_name" placeholder="">
+                                        </div>
+                                        <hr>
+                                            <p>獎章</p>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                                <label class="form-check-label" for="inlineRadio1">無</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">卓越獎</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                                <label class="form-check-label" for="inlineRadio3">特優獎</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+                                                <label class="form-check-label" for="inlineRadio4">優等獎</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+                                                <label class="form-check-label" for="inlineRadio5">甲等獎</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option6">
+                                                <label class="form-check-label" for="inlineRadio6">特色表現獎</label>
+                                            </div>
+                                            <hr>
+                                            <p>得獎</p>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <label class="form-check-label" for="inlineCheckbox1">法規與年度規劃傑出獎</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                                <label class="form-check-label" for="inlineCheckbox2">選制傑出獎</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                                <label class="form-check-label" for="inlineCheckbox3">財務傑出獎</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                                <label class="form-check-label" for="inlineCheckbox4">學權傑出獎</label>
+                                            </div>
+                                    <!--
                                         <div class="form-group form-check">
                                             <input type="checkbox" class="form-check-input" id="reward">
                                             <label class="form-check-label" for="">本學校得獎</label>
@@ -110,6 +162,7 @@
                                             <input type="checkbox" class="form-check-input" id="medal">
                                             <label class="form-check-label" for="">本學校有獎章</label>
                                         </div>
+                                    -->
                                         <hr>
                                         <button type="submit" class="btn btn-warning btn-block" id="edit-univer">確認修改</button>
                                     </div>
