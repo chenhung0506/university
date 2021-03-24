@@ -10,7 +10,7 @@ import hmac
 import hashlib 
 import binascii
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask import Flask, Response, render_template, request, redirect, jsonify, send_from_directory, url_for, make_response
 from threading import Timer,Thread,Event
 from flask_restful import Resource
@@ -35,7 +35,6 @@ def setup_route(api):
     api.add_resource(AddUniversity, '/university/addUniversity')
     api.add_resource(DelUniversity, '/university/delUniversity')
     api.add_resource(UploadPdf, '/university/uploadPdf')
-    api.add_resource(JWT, '/university/jwt')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -51,6 +50,7 @@ class UploadPdf(Resource):
             return {"data":filename_ok, "status": 200, "message":"success"}, 200
         else:
             log.info('valid sub filename')
+            # return Response({"status": 400, "message":"錯誤檔案格式"},status=500)
             return {"status": 400, "message":"錯誤檔案格式"}, 200
 
 class GetUniversity(Resource):
@@ -125,36 +125,29 @@ class DelUniversity(Resource):
 class JWT(Resource):
     def post(self):
         try:
+            user = json.loads(request.data).get("user")
             key='super-secret'
-            payload={"id":"1","email":"myemail@gmail.com" }
-            token = jwt.encode(payload, key)
+            algorithm = "HS256"
+            payload={
+                "iss":"university", # (Issuer) Token 的發行者
+                "sub": user, # (Subject) 也就是使用該 Token 的使用者
+                'exp': datetime.utcnow(), # (Expiration Time) Token 的過期時間
+                'nbf': datetime.utcnow(), # (Not Before) Token 的生效時間
+                'iat': datetime.utcnow(), # (Issued At) Token 的發行時間
+                }
+            log.info(datetime.utcnow())
+            log.info(payload)
+            token = jwt.encode(payload, key, algorithm)
             log.info (token)
-            # decoded = jwt.decode(token, verify=False) 
-            decoded = jwt.decode(token, options={"verify_signature": False}) # works in PyJWT >= v2.0
-            log.info(decoded)
-            log.info(decoded["user"])
+            # de_token = jwt.decode(token, 'key', audience='www.example.com', issuer='university', algorithm=algorithm, verify=True)
+            de_token = jwt.decode(token, key ,algorithm)
+            log.info(de_token)
 
         except Exception as e:
-            log.error("Recaptcha error: "+utils.except_raise(e))
+            log.error("JWT error: "+utils.except_raise(e))
             return 'false'
 
+# curl --location --request POST 'http://localhost:8336/university/jwt' --header 'Content-Type: application/json' --data '{"user":"deployer"}'
+# curl --location --request POST 'http://localhost:8336/university/jwt/encode' --header 'Content-Type: application/json' --data '{"user":"deployer"}'
+# curl --location --request POST 'http://localhost:8336/university/jwt/decode' --header 'Content-Type: application/json' --data '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIxMjcuMC4wLjEiLCJzdWIiOiJkZXBsb3llciIsImV4cCI6MTYxNjU1MjcwMiwibmJmIjoxNjE2NTUyNjQyLCJpYXQiOjE2MTY1NTI2NDJ9.i_Dwb-si0GMJfN6GPiUZyOpCHmL6iyTVZZaPHlCXiZI"}'
 
-# def secure_filename(filename):
-#     if isinstance(filename, text_type):
-#         from unicodedata import normalize
-#         filename = normalize("NFKD", filename).encode("utf-8", "ignore")
-#         if not PY2:
-#             filename = filename.decode("utf-8")
-#     for sep in os.path.sep, os.path.altsep:
-#         if sep:
-#             filename = filename.replace(sep, " ")
-#     _filename_ascii_add_strip_re = re.compile(r'[^A-Za-z0-9_\u4E00-\u9FBF.-]')
-#     filename = str(_filename_ascii_add_strip_re.sub('', '_'.join(filename.split()))).strip('._')
-#     if (
-#         os.name == "nt"
-#         and filename
-#         and filename.split(".")[0].upper() in _windows_device_files
-#     ):
-#         filename = "_" + filename
-
-#     return filename

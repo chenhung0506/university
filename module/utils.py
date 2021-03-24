@@ -12,6 +12,7 @@ import hashlib
 import re
 import unicodedata
 import string
+import jwt
 from ftplib import FTP
 from base64 import decodebytes
 from threading import Timer,Thread,Event
@@ -231,3 +232,40 @@ def clean_filename(filename, whitelist=valid_filename_chars, replace=' '):
         print("Warning, filename truncated because it was over {}. Filenames may no longer be unique".format(char_limit))
     return cleaned_filename[:char_limit]
     #'fake_folder/\[]}{}|~`"\':;,/? abcABC 0123 !@#$%^&*()_+ clᐖﯫⅺຶ 讀ϯՋ㉘ ⅮRㇻᎠ⍩ 𝁱C ℿ؛ἂeuឃC ᅕ ᑉﺜͧ bⓝ s⡽Հᛕ\ue063 牢𐐥er ᐛŴ n წş .ھڱ                                 df                                         df                                  dsfsdfgsg!zip'
+
+
+def JWTencode(user, remote_addr):
+    try:
+        key='super-secret'
+        algorithm = "HS256"
+        payload={
+            "iss": remote_addr, # (Issuer) Token 的發行者
+            "sub": user, # (Subject) 也就是使用該 Token 的使用者
+            'exp': datetime.utcnow()+ timedelta(seconds=60*60*1), # (Expiration Time) Token 的過期時間
+            'nbf': datetime.utcnow(), # (Not Before) Token 的生效時間
+            'iat': datetime.utcnow(), # (Issued At) Token 的發行時間
+            }
+        log.info(payload)
+        token = jwt.encode(payload, key, algorithm)
+        log.info (token)
+        return token
+
+    except Exception as e:
+        log.error("JWTencode error: "+utils.except_raise(e))
+        return 'false'
+
+def JWTdecode(token):
+    try:
+        key='super-secret'
+        algorithm = "HS256"
+        # de_token = jwt.decode(token, 'key', audience='www.example.com', issuer='university', algorithm=algorithm, verify=True)
+        de_token = jwt.decode(token, key ,algorithm)
+        log.info(de_token)
+        # return redirect("/admin", code=302)
+        return True
+    except Exception as e:
+        log.error("JWTdecode error: "+except_raise(e))
+        return False
+
+def validUser(user, password):
+    return user == 'edu_admin' and str(password)==str('214e109948340ebc28d46c82dcbb24d2')
