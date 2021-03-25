@@ -68,7 +68,6 @@
     <script>
         $(document).ready(function() {
             $('.login').on('click',function(){
-                console.log($("#password").val())
                 $.ajax({
                     url: "/university/valid",
                     type: "POST",
@@ -76,7 +75,7 @@
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify({"account":  $("#account").val(), "password":$.md5($("#password").val())}),
                     success: function(returnData, textStatus, xhr){
-                        window.location.href = "/admin";
+                        // window.location.href = "/admin";
                     }
                 })
             })        

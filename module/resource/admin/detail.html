@@ -83,9 +83,9 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">修改學校分類</label>
                                             <select class="form-control" id="kind">
-                                                <option value="普通大學">普通大學</option>
-                                                <option value="科技大學">科技大學</option>
-                                                <option value="專科學校">專科學校</option>
+                                                <option value="專科學校組">專科學校組</option>
+                                                <option value="大學校院組">大學校院組</option>
+                                                <option value="科技大學組">科技大學組</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -95,62 +95,62 @@
                                         <hr>
                                         <div class="form-group">
                                             <label for="">學生會簡述</label>
-                                            ｜舊版本：<a href="">檔名</a>
+                                            <span id="old_pdf1_p">｜舊版本：<a href="" id="old_pdf1"></a></span>
                                             <input type="file" class="form-control-file" id="pdf1_path">
                                         </div>
                                         <hr>
                                         <div class="form-group">
                                             <label for="">學生會特色簡報</label>
-                                            ｜舊版本：<a href="">檔名</a>
+                                            <span id="old_pdf2_p">｜舊版本：<a href="" id="old_pdf2"></a></span>
                                             <input type="file" class="form-control-file" id="pdf2_path">
                                         </div>
                                         <hr>
                                         <div class="form-group">
                                             <label for="">修改</label>
-                                            <input type="text" class="form-control" id="u_name" placeholder="">
+                                            <input type="text" class="form-control" id="url_path" placeholder="">
                                         </div>
                                         <hr>
                                             <p>獎章</p>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked>
                                                 <label class="form-check-label" for="inlineRadio1">無</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
                                                 <label class="form-check-label" for="inlineRadio2">卓越獎</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3">
                                                 <label class="form-check-label" for="inlineRadio3">特優獎</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4">
                                                 <label class="form-check-label" for="inlineRadio4">優等獎</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5">
                                                 <label class="form-check-label" for="inlineRadio5">甲等獎</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option6">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="6">
                                                 <label class="form-check-label" for="inlineRadio6">特色表現獎</label>
                                             </div>
                                             <hr>
                                             <p>得獎</p>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <input class="form-check-input" type="checkbox" id="medal1" value="option1">
                                                 <label class="form-check-label" for="inlineCheckbox1">法規與年度規劃傑出獎</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                                <input class="form-check-input" type="checkbox" id="medal2" value="option2">
                                                 <label class="form-check-label" for="inlineCheckbox2">選制傑出獎</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                                <input class="form-check-input" type="checkbox" id="medal3" value="option3">
                                                 <label class="form-check-label" for="inlineCheckbox3">財務傑出獎</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                                <input class="form-check-input" type="checkbox" id="medal4" value="option4">
                                                 <label class="form-check-label" for="inlineCheckbox4">學權傑出獎</label>
                                             </div>
                                     <!--
@@ -237,10 +237,28 @@
                         $("#u_name").val(returnData.data[0]['u_name']);
                         $("#kind option[value='"+returnData.data[0]['kind']+"']").prop('selected',true);
                         $("#descri").val(returnData.data[0]['descri']);
-                        // $("#pdf1_path").val(returnData.data[0]['pdf1_path']);
-                        // $("#pdf2_path").val(returnData.data[0]['pdf2_path']);
-                        $("#reward").prop('checked', parseInt( returnData.data[0]['reward'] ));
-                        $("#medal").prop('checked', parseInt( returnData.data[0]['medal'] ));
+                        if (returnData.data[0]['pdf1_path']==''){
+                            $("#old_pdf1_p").removeAttr("href");
+                            $("#old_pdf1_p").hide();
+                        }else{
+                            $("#old_pdf1").attr("href", '/university/upload/' + returnData.data[0]['pdf1_path']);
+                            $("#old_pdf1_p").show();
+                        }
+                        if (returnData.data[0]['pdf2_path']==''){
+                            $("#old_pdf2_p").removeAttr("href");
+                            $("#old_pdf2_p").hide();
+                        }else{
+                            $("#old_pdf2").attr("href", '/university/upload/' + returnData.data[0]['pdf2_path']);
+                            $("#old_pdf2_p").show();
+                        }
+                        $("#old_pdf1").text(returnData.data[0]['pdf1_path']==''?"尚未上傳檔案":returnData.data[0]['pdf1_path']);
+                        $("#old_pdf2").text(returnData.data[0]['pdf2_path']==''?"尚未上傳檔案":returnData.data[0]['pdf2_path']);
+                        $("#url_path").val(returnData.data[0]['url_path']);
+                        $("input[name=inlineRadioOptions][value=" + returnData.data[0]['reward'] + "]").prop('checked', true);
+                        $("#medal1").prop('checked', parseInt( returnData.data[0]['medal1'] ));
+                        $("#medal2").prop('checked', parseInt( returnData.data[0]['medal2'] ));
+                        $("#medal3").prop('checked', parseInt( returnData.data[0]['medal3'] ));
+                        $("#medal4").prop('checked', parseInt( returnData.data[0]['medal4'] ));
                     }
             })
 
@@ -268,15 +286,26 @@
             });
 
             function editUniver(pdf1, pdf2){
+                var radios = $('input[name=inlineRadioOptions]');
+                var reward = ''
+                for (var i = 0, length = radios.length; i < length; i++) {
+                    if (radios[i].checked) {
+                        reward=radios[i].value 
+                    }
+                }
                 var dataJSON = {
                     "u_id": $("#u_id").val(),
                     "u_name": $("#u_name").val(),
                     "kind": $("#kind").val(),
                     "descri": $("#descri").val(),
-                    "pdf1_path": pdf1,
-                    "pdf2_path": pdf2,
-                    "reward": $("#reward").prop('checked'),
-                    "medal": $("#medal").prop('checked')
+                    "pdf1_path": pdf1==''?$("#old_pdf1").text():pdf1,
+                    "pdf2_path": pdf2==''?$("#old_pdf2").text():pdf2,
+                    "url_path": $("#url_path").val(),
+                    "reward": reward,
+                    "medal1": $("#medal1").prop('checked'),
+                    "medal2": $("#medal2").prop('checked'),
+                    "medal3": $("#medal3").prop('checked'),
+                    "medal4": $("#medal4").prop('checked')
                 };
                 $.ajax({
                     url: "/university/editUniversity",
@@ -291,10 +320,22 @@
                             $("#u_name").val(returnData.data[0]['u_name']);
                             $("#kind option[value='"+returnData.data[0]['kind']+"']").prop('selected',true);
                             $("#descri").val(returnData.data[0]['descri']);
-                            // $("#pdf1_path").val(returnData.data[0]['pdf1_path']);
-                            // $("#pdf2_path").val(returnData.data[0]['pdf2_path']);
-                            $("#reward").prop('checked', parseInt( returnData.data[0]['reward'] ));
-                            $("#medal").prop('checked', parseInt( returnData.data[0]['medal'] ));
+                            $("#old_pdf1").attr("href", '/university/upload/' + returnData.data[0]['pdf1_path']);
+                            $("#old_pdf2").attr("href", '/university/upload/' + returnData.data[0]['pdf2_path']);
+                            if (returnData.data[0]['pdf1_path']==''){
+                                $("#old_pdf1").removeAttr("href");
+                            }
+                            if (returnData.data[0]['pdf2_path']==''){
+                                $("#old_pdf2").removeAttr("href");
+                            }
+                            $("#old_pdf1").text(returnData.data[0]['pdf1_path']==''?"尚未上傳檔案":returnData.data[0]['pdf1_path']);
+                            $("#old_pdf2").text(returnData.data[0]['pdf2_path']==''?"尚未上傳檔案":returnData.data[0]['pdf2_path']);
+                            $("#url_path").val(returnData.data[0]['url_path']);
+                            $("input[name=inlineRadioOptions][value=" + returnData.data[0]['reward'] + "]").prop('checked', true);
+                            $("#medal1").prop('checked', parseInt( returnData.data[0]['medal1'] ));
+                            $("#medal2").prop('checked', parseInt( returnData.data[0]['medal2'] ));
+                            $("#medal3").prop('checked', parseInt( returnData.data[0]['medal3'] ));
+                            $("#medal4").prop('checked', parseInt( returnData.data[0]['medal4'] ));
                             var r = confirm("更新成功!");
                             if (r == true) {
                                 window.location.href="list.html"

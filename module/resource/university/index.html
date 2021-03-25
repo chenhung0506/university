@@ -20,17 +20,17 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="">
-                            <button type="button" class="btn btn-warning btn-block univer-btn" data-kind="college">普通大學</button>
+                            <button type="button" class="btn btn-warning btn-block univer-btn" data-kind="junior">專科學校組</button>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="">
-                            <button type="button" class="btn btn-danger btn-block univer-btn" data-kind="technology">科技大學</button>
+                            <button type="button" class="btn btn-danger btn-block univer-btn" data-kind="college">大學校院組</button>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="">
-                            <button type="button" class="btn btn-info btn-block univer-btn" data-kind="junior">專科學校</button>
+                            <button type="button" class="btn btn-info btn-block univer-btn" data-kind="technology">科技大學組</button>
                         </div>
                     </div>
                     
@@ -70,8 +70,8 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                         <!--medal-->
-                        <div class="top-pic">
-                            <img src="img/medal/01.png" class="img-fluid">
+                        <div class="top-pic" id="reward">
+                            <img src="img/medal/2.png" class="img-fluid">
                         </div>
                         <!--end medal-->
                     </div>
@@ -82,10 +82,10 @@
                             </div>
                             <!--honor-->
                             <div class="honor">
-                                <p>法規與年度規劃傑出獎</p>
-                                <p>選制傑出獎</p>
-                                <p>財務傑出獎</p>
-                                <p>學權傑出獎</p>
+                                <p id="medal1">法規與年度規劃傑出獎</p>
+                                <p id="medal2">選制傑出獎</p>
+                                <p id="medal3">財務傑出獎</p>
+                                <p id="medal4">學權傑出獎</p>
                             </div>
                             <!--end honor-->
                             <div class="desc">
@@ -96,7 +96,7 @@
                     <div class="card-footer">
                         <a href="" class="pdf-l" id="pop-pdf1">學生會簡述</a>
                         <a href="" class="pdf-r" id="pop-pdf2">學生會特色簡報</a>
-                        <a href="" class="pdf-c">看更多</a>
+                        <a href="" class="pdf-c" id="url_path">看更多</a>
                     </div>
                 </div>
             </div>
@@ -106,35 +106,6 @@
   </div>
 </div>
 
-
-<!-- Modal 
-<div class="modal fade" id="school" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content" id="is-medal-reward">
-      <div class="modal-header">
-        <h5 class="modal-title" id="pop-name">台灣大學</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-            <div class="col-md-12">
-                <p id="pop-descri"></p>
-            </div>
-            <hr>
-            <div class="col-md-6" id="pop-pdf1">
-                <img src="https://via.placeholder.com/360x480?text=PDF" class="img-fluid">
-            </div>
-            <div class="col-md-6" id="pop-pdf2">
-                <img src="https://via.placeholder.com/360x480?text=PDF2" class="img-fluid">
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -153,18 +124,18 @@
                     success: function(returnData, textStatus, xhr){
                         console.log(returnData.data)
                         returnData.data.forEach(function( e ) {
-                            if ( e['kind'] == '技職工專') {
+                            if ( e['kind'] == '專科學校組') {
                                 junior_list.push(e)
-                            } else if ( e['kind'] == '科技大學') {
+                            } else if ( e['kind'] == '科技大學組') {
                                 technology_list.push(e)
-                            } else if ( e['kind'] == '一般大學') {
+                            } else if ( e['kind'] == '大學校院組') {
                                 college_list.push(e)
                             }
                         });
                         // console.log(college_list);
                         // console.log(technology_list);
                         // console.log(junior_list);
-                        univerOnClick('college');
+                        univerOnClick('junior');
                     }
             })
 
@@ -175,45 +146,47 @@
             function univerOnClick(kind){
                 $("#univer-list").empty()
                 if (kind == 'college') {
-                    $("#sub-title").text("大學")
+                    $("#sub-title").text("大學校院組")
                     college_list.forEach(function( e ) {
                         $("#univer-list").append("<li data-toggle='modal' data-target='#school' class='pop-uni-info' data-info='"+  JSON.stringify(e) +"' >"+ e["u_name"]+"</li>");
                     })
                 }else if (kind == 'technology') {
-                    $("#sub-title").text("科大")
+                    $("#sub-title").text("科技大學組")
                     technology_list.forEach(function( e ) {
                         $("#univer-list").append("<li data-toggle='modal' data-target='#school' class='pop-uni-info' data-info='"+  JSON.stringify(e) +"' >"+ e["u_name"]+"</li>");
                     })
                 }else if (kind == 'junior') {
-                    $("#sub-title").text("五專")
+                    $("#sub-title").text("專科學校組")
                     junior_list.forEach(function( e ) {
                         $("#univer-list").append("<li data-toggle='modal' data-target='#school' class='pop-uni-info' data-info='"+  JSON.stringify(e) +"' >"+ e["u_name"]+"</li>");
                     })
                 }
             }
             $(document).on("click", "li.pop-uni-info" , function() {
-                // console.log($(this).data("info"))
+                console.log($(this).data("info"))
                 var info = $(this).data("info")
                 $("#pop-name").html(info['u_name']);
                 $("#pop-descri").html(info['descri']);
-                if (info['medal']=='1' | info['reward']=='1'){
-                    $("#is-medal-reward").addClass("bg-warning");
-                } else {
-                    $("#is-medal-reward").removeClass("bg-warning");
-                }
+                if (info['reward']=='0'){$("#reward").hide()}else{$("#reward").children().attr("src","img/medal/"+ info['reward'] +".png")}
+                if (info['medal1']=='1'){$("#medal1").show()}else{$("#medal1").hide()}
+                if (info['medal2']=='1'){$("#medal2").show()}else{$("#medal2").hide()}
+                if (info['medal3']=='1'){$("#medal3").show()}else{$("#medal3").hide()}
+                if (info['medal4']=='1'){$("#medal4").show()}else{$("#medal4").hide()}
                 $("#pop-pdf1").data("path",info['pdf1_path']);
                 $("#pop-pdf2").data("path",info['pdf2_path']);
+                if (info['pdf1_path'] == ''){$("#pop-pdf1").hide()}else{
+                    $("#pop-pdf1").show()
+                    $("#pop-pdf1").attr("href", '/university/upload/' + info['pdf1_path']);
+                }
+                if (info['pdf1_path'] == ''){$("#pop-pdf1").hide()}else{
+                    $("#pop-pdf2").show()
+                    $("#pop-pdf2").attr("href", '/university/upload/' + info['pdf2_path']);
+                }
+                if (info['url_path'] == ''){$("#url_path").hide()}else{
+                    $("#url_path").show()
+                    $("#url_path").attr("href", info['url_path']);
+                }
             });
-
-            $("#pop-pdf1").on('click',function(){
-                console.log('/univer/upload/'+$(this).data('path'))
-                window.open('/university/upload/'+$(this).data('path'));
-            })
-
-            $("#pop-pdf2").on('click',function(){
-                console.log('/univer/upload/'+$(this).data('path'))
-                window.open('/university/upload/'+$(this).data('path'));
-            })
         })
         </script>
     </body>
