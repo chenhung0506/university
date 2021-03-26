@@ -102,10 +102,13 @@ print_help(){
   echo "-e : Specify .env file"
   echo "-p : Push image"
   echo "Run Example:"
-  echo "./run 1"
-  echo "./run 1 -v -t input_tag_name"
-  echo "./run 1 -v -p"
-  echo "./run 1 -v -p -e dev.env -t test"
+  echo "./run.sh 1"
+  echo "./run.sh 1 -v -t input_tag_name"
+  echo "./run.sh 1 -v -p"
+  echo "./run.sh 1 -v -p -e dev.env -t test"
+  echo "./run.sh 3 -v"
+  echo "./run.sh 3 -l"
+  echo "./run.sh 3 -t input_tag_name"
   echo "=============================================="
 }
 

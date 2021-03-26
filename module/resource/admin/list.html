@@ -165,17 +165,20 @@
             });
 
             function delUniversity(u_id) {
-                $.ajax({
-                    url: "/university/delUniversity",
-                    type: "POST",
-                    dataType: "json",
-                    contentType: "application/json;charset=utf-8",
-                    data: JSON.stringify({"u_id": u_id}),
-                    success: function(returnData, textStatus, xhr){
-                        console.log(returnData)
-                        table.ajax.reload();
-                    }
-                });
+                var r = confirm("確定要刪除資料嗎?");
+                if (r == true) {
+                    $.ajax({
+                        url: "/university/delUniversity",
+                        type: "POST",
+                        dataType: "json",
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify({"u_id": u_id}),
+                        success: function(returnData, textStatus, xhr){
+                            console.log(returnData)
+                            table.ajax.reload();
+                        }
+                    });
+                }
             }
         });
         </script>
