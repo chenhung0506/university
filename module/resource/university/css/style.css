@@ -95,10 +95,10 @@ section {
 .honor p{
   display: inline-block;
   font-size: 13px;
-  padding:10px 15px;
+  padding:8px;
   color: #fff;
   font-weight: bold;
-  border-radius: 15px 30px 15px 30px;
+  border-radius:8px;
   background: linear-gradient(15deg, #1b49bd, #2576d9);
 }
 .card-footer{
@@ -116,7 +116,7 @@ section {
   display: flex;
   justify-content: center;
   padding:20px 10px;
-  width: 50%;
+  width: 100%;
   text-transform: uppercase;
   background-color: #e74c3c;
   border-bottom: 5px solid #c0392b;
@@ -126,7 +126,7 @@ section {
   display: flex;
   justify-content: center;
   padding:20px 10px;
-  width: 50%;
+  width: 100%;
   text-transform: uppercase;
   background-color: #2ecc71;
   border-bottom: 5px solid #27ae60;
@@ -136,7 +136,7 @@ section {
   display: flex;
   justify-content: center;
   padding:20px 10px;
-  width: 50%;
+  width: 100%;
   text-transform: uppercase;
   background-color: #f1c40f;
   border-bottom: 5px solid #f39c12;

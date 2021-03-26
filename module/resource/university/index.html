@@ -20,17 +20,17 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="">
-                            <button type="button" class="btn btn-warning btn-block univer-btn" data-kind="junior">專科學校組</button>
+                            <button type="button" class="btn btn-warning btn-block univer-btn" data-kind="junior">A. 專科學校組</button>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="">
-                            <button type="button" class="btn btn-danger btn-block univer-btn" data-kind="college">大學校院組</button>
+                            <button type="button" class="btn btn-danger btn-block univer-btn" data-kind="college">B. 大學校院組</button>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="">
-                            <button type="button" class="btn btn-info btn-block univer-btn" data-kind="technology">科技大學組</button>
+                            <button type="button" class="btn btn-info btn-block univer-btn" data-kind="technology">C. 科技大學組</button>
                         </div>
                     </div>
                     
@@ -124,12 +124,12 @@
                     success: function(returnData, textStatus, xhr){
                         console.log(returnData.data)
                         returnData.data.forEach(function( e ) {
-                            if ( e['kind'] == '專科學校組') {
+                            if ( e['kind'] == 'A. 專科學校組') {
                                 junior_list.push(e)
-                            } else if ( e['kind'] == '科技大學組') {
-                                technology_list.push(e)
-                            } else if ( e['kind'] == '大學校院組') {
+                            } else if ( e['kind'] == 'B. 大學校院組') {
                                 college_list.push(e)
+                            } else if ( e['kind'] == 'C. 科技大學組') {
+                                technology_list.push(e)
                             }
                         });
                         // console.log(college_list);
@@ -146,17 +146,17 @@
             function univerOnClick(kind){
                 $("#univer-list").empty()
                 if (kind == 'college') {
-                    $("#sub-title").text("大學校院組")
+                    $("#sub-title").text("A. 大學校院組")
                     college_list.forEach(function( e ) {
                         $("#univer-list").append("<li data-toggle='modal' data-target='#school' class='pop-uni-info' data-info='"+  JSON.stringify(e) +"' >"+ e["u_name"]+"</li>");
                     })
                 }else if (kind == 'technology') {
-                    $("#sub-title").text("科技大學組")
+                    $("#sub-title").text("B. 科技大學組")
                     technology_list.forEach(function( e ) {
                         $("#univer-list").append("<li data-toggle='modal' data-target='#school' class='pop-uni-info' data-info='"+  JSON.stringify(e) +"' >"+ e["u_name"]+"</li>");
                     })
                 }else if (kind == 'junior') {
-                    $("#sub-title").text("專科學校組")
+                    $("#sub-title").text("C. 專科學校組")
                     junior_list.forEach(function( e ) {
                         $("#univer-list").append("<li data-toggle='modal' data-target='#school' class='pop-uni-info' data-info='"+  JSON.stringify(e) +"' >"+ e["u_name"]+"</li>");
                     })
@@ -178,7 +178,7 @@
                     $("#pop-pdf1").show()
                     $("#pop-pdf1").attr("href", '/university/upload/' + info['pdf1_path']);
                 }
-                if (info['pdf1_path'] == ''){$("#pop-pdf1").hide()}else{
+                if (info['pdf2_path'] == ''){$("#pop-pdf2").hide()}else{
                     $("#pop-pdf2").show()
                     $("#pop-pdf2").attr("href", '/university/upload/' + info['pdf2_path']);
                 }
