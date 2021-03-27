@@ -13,7 +13,6 @@ import threading
 from datetime import datetime
 from flask import Flask, Response, render_template, request, redirect, jsonify, send_from_directory, url_for, make_response
 from threading import Timer,Thread,Event
-import dao
 import const
 from flask_restful import Resource
 import log as logpy
@@ -35,6 +34,7 @@ def setup_route(api):
     api.add_resource(UniversityStaticResource, '/university/<path:filename>')
     api.add_resource(UploadStaticResource, '/university/upload/<path:filename>')
     api.add_resource(ValidUser, '/university/valid')
+    api.add_resource(LogOut, '/university/logout')
 
 class HealthCheck(Resource):
     log.debug('check health')
@@ -88,7 +88,15 @@ class Default(Resource):
     def get(self):
         return redirect(url_for('university'))
 
-
+class LogOut(Resource):
+    def post(self):
+        try:
+            r = Response(json.dumps({"data": "log out success"}), mimetype='application/json')
+            r.set_cookie('access_token', '', expires=0)
+            return r
+        except Exception as e:
+            log.error("validate JWT error: "+utils.except_raise(e))
+            return redirect("/university/login", code=302)
 class ValidUser(Resource):
     def post(self):
         try:

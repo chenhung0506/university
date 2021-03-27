@@ -2,6 +2,7 @@ import log
 import pymysql
 import datetime
 import json
+import const
 
 log = log.logging.getLogger(__name__)
 
@@ -9,7 +10,13 @@ log = log.logging.getLogger(__name__)
 class Database(object):
     conn = {}
     def __init__(self):
-        conn = pymysql.Connect(host='172.105.230.31',user='root',passwd='password',db='university',charset='utf8')
+        log.info(const.DB_PORT)
+        log.info(const.DB_HOST)
+        log.info(const.DB_ACCOUNT)
+        log.info(const.DB_PASSWORD)
+        conn = pymysql.Connect(host=const.DB_HOST, port=int(const.DB_PORT), user=const.DB_ACCOUNT, passwd=const.DB_PASSWORD, db='university',charset='utf8')
+        # conn = pymysql.Connect(host='172.105.230.31', user='root', passwd='password', db='university',charset='utf8')
+        # conn = pymysql.Connect(host='172.105.230.31',user='root',passwd='password',db='university',charset='utf8')
         self.conn = conn
     def getUniversity(self,data):
         cursor = self.conn.cursor()

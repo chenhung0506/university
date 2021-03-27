@@ -199,7 +199,7 @@
                     <div class="modal-body text-center">確定登出本系統？</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
-                        <a class="btn btn-primary" href="login.html">登出</a>
+                        <a class="btn btn-primary" id="log-out" href="login.html">登出</a>
                     </div>
                 </div>
             </div>
@@ -211,8 +211,23 @@
         <script src="js/sb-admin-2.min.js"></script>
         <script>
         $(document).ready(function() {
+            $('#log-out').on('click',function(){
+                $.ajax({
+                        url: '/university/logout',
+                        type: 'post',
+                        success: function(data){
+                            console.log(data)
+                            window.location.href="/university/login"
+                        },
+                        error: function(xhr, ajaxOptions, thrownError){
+                            console.log(xhr.status);
+                            console.log(thrownError);
+                            window.location.href="/university/login"
+                        }
+                })
+            })
 
-            console.log(urlSearchParams('uid'));
+            // console.log(urlSearchParams('uid'));
 
             function urlSearchParams(name) {
                 const uri = window.location.href;

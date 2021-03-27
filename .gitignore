@@ -6,5 +6,6 @@ module/flask/
 module/logs/
 module/__pycache__/
 module/data_for_KG/
+module/university/upload
 module/const.pyc
 imgs/
