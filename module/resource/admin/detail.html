@@ -95,13 +95,13 @@
                                         <hr>
                                         <div class="form-group">
                                             <label for="">學生會簡述</label>
-                                            <span id="old_pdf1_p">｜舊版本：<a href="" id="old_pdf1"></a> <button class="btn btn-warning" id="clear-pdf1">清除</button></span>
+                                            <span id="old_pdf1_p">｜舊版本：<a href="" target="_blank" id="old_pdf1"></a> <button class="btn btn-warning" id="clear-pdf1">清除</button></span>
                                             <input type="file" class="form-control-file" id="pdf1_path">
                                         </div>
                                         <hr>
                                         <div class="form-group">
                                             <label for="">學生會特色簡報</label>
-                                            <span id="old_pdf2_p">｜舊版本：<a href="" id="old_pdf2"></a> <button class="btn btn-warning" id="clear-pdf2">清除</button></span>
+                                            <span id="old_pdf2_p">｜舊版本：<a href="" target="_blank" id="old_pdf2"></a> <button class="btn btn-warning" id="clear-pdf2">清除</button></span>
                                             <input type="file" class="form-control-file" id="pdf2_path">
                                         </div>
                                         <hr>
@@ -153,16 +153,6 @@
                                                 <input class="form-check-input" type="checkbox" id="medal4" value="option4">
                                                 <label class="form-check-label" for="inlineCheckbox4">學權傑出獎</label>
                                             </div>
-                                    <!--
-                                        <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="reward">
-                                            <label class="form-check-label" for="">本學校得獎</label>
-                                        </div>
-                                        <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="medal">
-                                            <label class="form-check-label" for="">本學校有獎章</label>
-                                        </div>
-                                    -->
                                         <hr>
                                         <button type="submit" class="btn btn-warning btn-block" id="edit-univer">確認修改</button>
                                     </div>
@@ -259,6 +249,7 @@
                             $("#old_pdf1_p").show()
                             $("#old_pdf1").text(returnData.data[0]['pdf1_path'])
                             $("#old_pdf1").attr("href", '/university/upload/' + returnData.data[0]['pdf1_path']);
+                            $("#old_pdf1").attr("target", "_blank")
                         }
                         if (returnData.data[0]['pdf2_path']==''){
                             $("#old_pdf2").text('')
@@ -267,6 +258,7 @@
                             $("#old_pdf2_p").show()
                             $("#old_pdf2").text(returnData.data[0]['pdf2_path'])
                             $("#old_pdf2").attr("href", '/university/upload/' + returnData.data[0]['pdf2_path']);
+                            $("#old_pdf2").attr("target", "_blank")
                         }
                         $("#url_path").val(returnData.data[0]['url_path']);
                         $("input[name=inlineRadioOptions][value=" + returnData.data[0]['reward'] + "]").prop('checked', true);
@@ -353,6 +345,7 @@
                                 $("#old_pdf1_p").show()
                                 $("#old_pdf1").text(returnData.data[0]['pdf1_path'])
                                 $("#old_pdf1").attr("href", '/university/upload/' + returnData.data[0]['pdf1_path']);
+                                $("#old_pdf1").attr("target", "_blank")
                             }
                             if (returnData.data[0]['pdf2_path']==''){
                                 $("#old_pdf2").text('')
@@ -361,6 +354,7 @@
                                 $("#old_pdf2_p").show()
                                 $("#old_pdf2").text(returnData.data[0]['pdf2_path'])
                                 $("#old_pdf2").attr("href", '/university/upload/' + returnData.data[0]['pdf2_path']);
+                                $("#old_pdf2").attr("target", "_blank")
                             }
                             $("#url_path").val(returnData.data[0]['url_path']);
                             $("input[name=inlineRadioOptions][value=" + returnData.data[0]['reward'] + "]").prop('checked', true);

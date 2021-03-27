@@ -7,6 +7,7 @@ services:
       - TZ=Asia/Taipei
     volumes:
       - ~/volumes/university:/usr/src/app/logs
+      - ~/volumes/university/upload:/usr/src/app/university/upload
       - ~/etc/timezone:/etc/localtime:ro
       - ~/.ssh/known_hosts:/root/.ssh/known_hosts
     ports: 
