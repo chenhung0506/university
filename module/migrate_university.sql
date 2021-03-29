@@ -16,6 +16,7 @@ create table university.university(
     medal2 VARCHAR(10) NOT NULL,
     medal3 VARCHAR(10) NOT NULL,
     medal4 VARCHAR(10) NOT NULL,
+    medal5 VARCHAR(10) NOT NULL,
     PRIMARY KEY ( u_id )
 )engine=InnoDB default charset=utf8mb4 collate utf8mb4_general_ci comment='學校資訊';
 

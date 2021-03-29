@@ -86,6 +86,7 @@
                                 <p id="medal2">選制傑出獎</p>
                                 <p id="medal3">財務傑出獎</p>
                                 <p id="medal4">學權傑出獎</p>
+                                <p id="medal5">特色表現獎</p>
                             </div>
                             <!--end honor-->
                             <div class="desc">
@@ -172,6 +173,7 @@
                 if (info['medal2']=='1'){$("#medal2").show()}else{$("#medal2").hide()}
                 if (info['medal3']=='1'){$("#medal3").show()}else{$("#medal3").hide()}
                 if (info['medal4']=='1'){$("#medal4").show()}else{$("#medal4").hide()}
+                if (info['medal5']=='1'){$("#medal5").show()}else{$("#medal5").hide()}
                 $("#pop-pdf1").data("path",info['pdf1_path']);
                 $("#pop-pdf2").data("path",info['pdf2_path']);
                 if (info['pdf1_path'] == ''){$("#pop-pdf1").hide()}else{

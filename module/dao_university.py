@@ -45,9 +45,9 @@ class Database(object):
 
     def addUniversity(self,data):
         cursor = self.conn.cursor()
-        sql = "INSERT INTO university.university (u_name, kind, descri, pdf1_path, pdf2_path, url_path, reward, medal1, medal2, medal3, medal4) \
-                VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        val = (data.get('u_name'), data.get('kind'), data.get('descri'), data.get('pdf1_path'), data.get('pdf2_path'), data.get('url_path'), data.get('reward'), data.get('medal1'), data.get('medal2'), data.get('medal3'), data.get('medal4'))
+        sql = "INSERT INTO university.university (u_name, kind, descri, pdf1_path, pdf2_path, url_path, reward, medal1, medal2, medal3, medal4, medal5) \
+                VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        val = (data.get('u_name'), data.get('kind'), data.get('descri'), data.get('pdf1_path'), data.get('pdf2_path'), data.get('url_path'), data.get('reward'), data.get('medal1'), data.get('medal2'), data.get('medal3'), data.get('medal4'), data.get('medal5'))
         log.info(val)
         try:
             cursor.execute(sql, val)
@@ -64,8 +64,8 @@ class Database(object):
 
     def editUniversity(self,data):
         cursor = self.conn.cursor()
-        sql = "UPDATE university.university SET u_name = %s, kind = %s, descri = %s, pdf1_path = %s, pdf2_path = %s, url_path = %s, reward = %s, medal1 = %s, medal2 = %s, medal3 = %s, medal4 = %s WHERE u_id = %s"
-        val = (data.get('u_name'), data.get('kind'), data.get('descri'), data.get('pdf1_path'), data.get('pdf2_path'), data.get('url_path'), data.get('reward'), data.get('medal1'), data.get('medal2'), data.get('medal3'), data.get('medal4'), int(data.get("u_id")))
+        sql = "UPDATE university.university SET u_name = %s, kind = %s, descri = %s, pdf1_path = %s, pdf2_path = %s, url_path = %s, reward = %s, medal1 = %s, medal2 = %s, medal3 = %s, medal4 = %s, medal5 = %s WHERE u_id = %s"
+        val = (data.get('u_name'), data.get('kind'), data.get('descri'), data.get('pdf1_path'), data.get('pdf2_path'), data.get('url_path'), data.get('reward'), data.get('medal1'), data.get('medal2'), data.get('medal3'), data.get('medal4'), data.get('medal5'), int(data.get("u_id")))
         log.info(val)
         try:
             cursor.execute(sql, val)
