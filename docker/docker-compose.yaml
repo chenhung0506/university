@@ -22,6 +22,20 @@ services:
     restart: always
     networks: 
       - nginx
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    volumes:
+      - ~/volumes/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: deployer
+      MYSQL_PASSWORD: Password@1
+    ports:
+      - "3306:3306"
+    networks:
+      - nginx
 networks:
   nginx:
     external: true
