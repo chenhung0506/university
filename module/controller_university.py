@@ -44,7 +44,7 @@ class UploadPdf(Resource):
         token = request.cookies.get('access_token')
         log.info(token)
         if utils.JWTdecode(token) == False:
-            return redirect("/university/login", code=302)
+            return redirect("/login", code=302)
         file = request.files['file']
         log.info(file.content_length)
         if file and allowed_file(file.filename):
@@ -81,7 +81,7 @@ class EditUniversity(Resource):
             token = request.cookies.get('access_token')
             log.info(token)
             if utils.JWTdecode(token) == False:
-                return redirect("/university/login", code=302)
+                return redirect("/login", code=302)
             input_data = json.loads(request.data)
             log.info(input_data)
             univerList = dao_university.Database().getUniversity(input_data)
@@ -103,7 +103,7 @@ class AddUniversity(Resource):
             token = request.cookies.get('access_token')
             log.info(token)
             if utils.JWTdecode(token) == False:
-                return redirect("/university/login", code=302)
+                return redirect("/login", code=302)
             input_data = json.loads(request.data)
             log.info(input_data)
             univerList = dao_university.Database().getUniversity(input_data)
@@ -123,7 +123,7 @@ class DelUniversity(Resource):
             token = request.cookies.get('access_token')
             log.info(token)
             if utils.JWTdecode(token) == False:
-                return redirect("/university/login", code=302)
+                return redirect("/login", code=302)
             input_data = json.loads(request.data)
             log.info(input_data)
             data = dao_university.Database().delUniversity(input_data)
